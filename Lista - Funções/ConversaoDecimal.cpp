@@ -35,7 +35,7 @@ void ExibeResultado(int valor)
 
 int main(void)
 {
-    printf("\n### Conversao de Decimal para Binario ###\n");
+    printf("\n### Conversao de Binario para Decimal ###\n");
     ExibeResultado(ConverteDecimal(LeNumero())); 
 
     return 0;
