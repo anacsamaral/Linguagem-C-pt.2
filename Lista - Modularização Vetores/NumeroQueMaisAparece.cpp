@@ -53,7 +53,7 @@ void Frequencia(int V[TF], int TL, int &MaisAparece, int &QtdeVezes)
     for (i = 0; i < TL - 1; i++)
     {
         QtdeVezes = 1;
-        for (j = i + 1; j < TL; j++)
+        for (j = i; j < TL; j++)
         {
             if (V[i] == V[j])
                 QtdeVezes++;
