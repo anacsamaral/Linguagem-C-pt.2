@@ -4,9 +4,9 @@
 
 #define TF 100
 
-// será passado por referência (Vetor e TL)
-// toda variável indexada, como Vetor[TF] não precisa de '&', pois já é um endereço por padrão.
-void LeVetor(int Vetor[TF], int &TL)
+// sera� passado por referencia (Vetor e TL)
+// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois ja� ha um endereco por padrao.
+void LeVetor(int Vetor[TF], int &TL) //por referencia = altera o valor da origem (vetor nao precisa pq ja eh passado por referencia
 {
     int aux;
     system("cls");
@@ -16,8 +16,8 @@ void LeVetor(int Vetor[TF], int &TL)
 
     while (TL < TF && aux > 0)
     {
-        Vetor[TL++] = aux;
-        // Vetor[TL++] -> vetor na posição TL recebe aux, após o ';', vai fazer receber TL++
+        Vetor[TL++] = aux; // (1)Vetor[TL] = aux e depois (2)incrementa TL++ ou TL = TL + 1
+        // Vetor[TL++] -> vetor na posicao TL recebe aux, apos o ';', vai fazer receber TL++
         // TL++
         if (TL == TF)
         {
@@ -32,8 +32,8 @@ void LeVetor(int Vetor[TF], int &TL)
     }
 }
 
-// Não é recomendado usar variável global
-void ExibeVetor(int Vet[TF], int Qtde) // Se fosse um TL em 'Qtde', ele não possuiria nenhuma relação com o da função anterior
+// Nao eh recomendado usar variavel global
+void ExibeVetor(int Vet[TF], int Qtde) // Se fosse um TL em 'Qtde', ele nao possuiria nenhuma relacao com o da funcao anterior
 {
     int i;
     system("cls");
@@ -49,19 +49,20 @@ void ExibeVetor(int Vet[TF], int Qtde) // Se fosse um TL em 'Qtde', ele não pos
 
 void Frequencia(int V[TF], int TL, int &MaisAparece, int &QtdeVezes)
 {
-    int i, j, MaiorCont = 0;
+    int i, j, cont = 0;
+    QtdeVezes = 0;
     for (i = 0; i < TL - 1; i++)
     {
-        QtdeVezes = 1;
+        cont = 0;
         for (j = i; j < TL; j++)
         {
             if (V[i] == V[j])
-                QtdeVezes++;
+                cont++;
 
-            if (QtdeVezes > MaiorCont)
+            if (cont > QtdeVezes)
             {
                 MaisAparece = V[i];
-                MaiorCont = QtdeVezes;
+                QtdeVezes = cont;
             }
         }
     }
@@ -80,4 +81,55 @@ int main(void)
     }
 
     return 0;
+}
+
+void LeVetor(int Vetor[TF], int &TL) //por referencia = altera o valor da origem (vetor nao precisa pq ja eh passado por referencia
+{
+    int aux;
+    system("cls");
+    printf("\n### Inserir no Vetor ###\n");
+    printf("Numero [%d]: ", TL);
+    scanf("%d", &aux);
+
+    while (TL < TF && aux > 0)
+    {
+        Vetor[TL++] = aux; // (1)Vetor[TL] = aux e depois (2)incrementa TL++ ou TL = TL + 1
+        // Vetor[TL++] -> vetor na posicao TL recebe aux, apos o ';', vai fazer receber TL++
+        // TL++
+        if (TL == TF)
+        {
+            printf("VETOR CHEIO!!!\n");
+            getch();
+        }
+        else
+        {
+            printf("Numero [%d]: ", TL);
+            scanf("%d", &aux);
+        }
+    }
+}
+
+void Soma(int Vet[TF], int TLS)
+{
+	int i, Soma = 0;
+	if (TLS == 0)
+	{
+		printf("Nao ha elementos para somar!!!\n");
+		getch();
+	}
+	else
+		for(i = 0; i < TLS; i++)
+			Soma += Vet[i];
+}
+
+int Contido(int Vetor[TF], int &TL, int Valor)
+{
+	int i = 0;
+	while (i < TL && Valor != Vetor[i])
+		i++;
+		
+	if (i < TL)
+		return 1;
+	else
+		return 0;
 }
