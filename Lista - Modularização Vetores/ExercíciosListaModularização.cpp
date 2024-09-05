@@ -4,8 +4,8 @@
 
 #define TF 100
 
-// sera� passado por referencia (Vetor e TL)
-// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois ja� ha um endereco por padrao.
+// sera? passado por referencia (Vetor e TL)
+// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois ja? ha um endereco por padrao.
 
 //EXERCÍCIO [1]
 
@@ -71,33 +71,6 @@ void Frequencia(int V[TF], int TL, int &MaisAparece, int &QtdeVezes)
     }
 }
 
-int main(void)
-{
-    int VA[TF], TLA = 0, Elemento, QtVezes;
-    LeVetor(VA, TLA);
-    ExibeVetor(VA, TLA);
-    Frequencia(VA, TLA, Elemento, QtVezes); // Na ordem de void Frequencia (V, TL, MA, QV)
-    if (TLA > 0)
-    {
-        printf("\nElemento de maior frequencia: %d", Elemento);
-        printf("\nQtde de Vezes: %d\n", QtVezes);
-    }
-
-    return 0;
-}
-
-/*int Contido(int Vetor[TF], int &TL, int Valor)
-{
-	int i = 0;
-	while (i < TL && Valor != Vetor[i])
-		i++;
-		
-	if (i < TL)
-		return 1;
-	else
-		return 0;
-} */
-
 //EXERCÍCIO [2]
 void SomaVetor(int Vet[TF], int TLS)
 {
@@ -112,18 +85,27 @@ void SomaVetor(int Vet[TF], int TLS)
 			Soma += Vet[i];
 }
 
-int Soma(void)
+int main(void)
 {
-    int V[TF], TL = 0, Soma, i;
-    LeVetor(V, TL);
-    ExibeVetor(V, TL);
-    SomaVetor(V, TL); // Na ordem de void Frequencia (V, TL, MA, QV)
-    if (TL > 0)
+    int VA[TF], TLA = 0, Elemento, QtVezes, VetorSoma[TF], TLS = 0, Soma, i;
+    LeVetor(VA, TLA);
+    ExibeVetor(VA, TLA);
+    Frequencia(VA, TLA, Elemento, QtVezes); // Na ordem de void Frequencia (V, TL, MA, QV)
+    if (TLA > 0)
     {
-        for(i = 0; i < TL; i++)
-            Soma += V[i];
-
-        printf("\nA soma dos elementos do vetor é: %d\n", Soma);
+        printf("\nElemento de maior frequencia: %d", Elemento);
+        printf("\nQtde de Vezes: %d\n", QtVezes);
+    }
+    
+    LeVetor(VetorSoma, TLS);
+    ExibeVetor(VetorSoma, TLS);
+    SomaVetor(VetorSoma, TLS); // Na ordem de void Frequencia (V, TL, MA, QV)
+    if (TLS > 0)
+    {
+        for(i = 0; i < TLS; i++)
+            Soma += VetorSoma[i];
+            
+        printf("\nA soma dos elementos do vetor eh: %d\n", Soma);
         getch();
     }
     else
@@ -131,3 +113,15 @@ int Soma(void)
     
     return 0;
 }
+
+/*int Contido(int Vetor[TF], int &TL, int Valor)
+{
+	int i = 0;
+	while (i < TL && Valor != Vetor[i])
+		i++;
+		
+	if (i < TL)
+		return 1;
+	else
+		return 0;
+} */
