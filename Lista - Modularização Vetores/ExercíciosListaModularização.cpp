@@ -4,8 +4,11 @@
 
 #define TF 100
 
-// sera° passado por referencia (Vetor e TL)
-// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois ja° ha um endereco por padrao.
+// seraÔøΩ passado por referencia (Vetor e TL)
+// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois jaÔøΩ ha um endereco por padrao.
+
+//EXERC√çCIO [1]
+
 void LeVetor(int Vetor[TF], int &TL) //por referencia = altera o valor da origem (vetor nao precisa pq ja eh passado por referencia
 {
     int aux;
@@ -83,33 +86,20 @@ int main(void)
     return 0;
 }
 
-void LeVetor(int Vetor[TF], int &TL) //por referencia = altera o valor da origem (vetor nao precisa pq ja eh passado por referencia
+/*int Contido(int Vetor[TF], int &TL, int Valor)
 {
-    int aux;
-    system("cls");
-    printf("\n### Inserir no Vetor ###\n");
-    printf("Numero [%d]: ", TL);
-    scanf("%d", &aux);
+	int i = 0;
+	while (i < TL && Valor != Vetor[i])
+		i++;
+		
+	if (i < TL)
+		return 1;
+	else
+		return 0;
+} */
 
-    while (TL < TF && aux > 0)
-    {
-        Vetor[TL++] = aux; // (1)Vetor[TL] = aux e depois (2)incrementa TL++ ou TL = TL + 1
-        // Vetor[TL++] -> vetor na posicao TL recebe aux, apos o ';', vai fazer receber TL++
-        // TL++
-        if (TL == TF)
-        {
-            printf("VETOR CHEIO!!!\n");
-            getch();
-        }
-        else
-        {
-            printf("Numero [%d]: ", TL);
-            scanf("%d", &aux);
-        }
-    }
-}
-
-void Soma(int Vet[TF], int TLS)
+//EXERC√çCIO [2]
+void SomaVetor(int Vet[TF], int TLS)
 {
 	int i, Soma = 0;
 	if (TLS == 0)
@@ -122,14 +112,22 @@ void Soma(int Vet[TF], int TLS)
 			Soma += Vet[i];
 }
 
-int Contido(int Vetor[TF], int &TL, int Valor)
+int Soma(void)
 {
-	int i = 0;
-	while (i < TL && Valor != Vetor[i])
-		i++;
-		
-	if (i < TL)
-		return 1;
-	else
-		return 0;
+    int V[TF], TL = 0, Soma, i;
+    LeVetor(V, TL);
+    ExibeVetor(V, TL);
+    SomaVetor(V, TL); // Na ordem de void Frequencia (V, TL, MA, QV)
+    if (TL > 0)
+    {
+        for(i = 0; i < TL; i++)
+            Soma += V[i];
+
+        printf("\nA soma dos elementos do vetor √©: %d\n", Soma);
+        getch();
+    }
+    else
+        printf("\nNao ha elementos no vetor, portanto nao ha elementos para exibir\n");
+    
+    return 0;
 }
