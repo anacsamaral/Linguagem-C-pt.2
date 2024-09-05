@@ -4,8 +4,8 @@
 
 #define TF 100
 
-// sera? passado por referencia (Vetor e TL)
-// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois ja? ha um endereco por padrao.
+// sera passado por referencia (Vetor e TL)
+// toda variavel indexada, como Vetor[TF] nao precisa de '&', pois ja ha um endereco por padrao.
 
 //EXERCÍCIO [1]
 
@@ -85,9 +85,59 @@ void SomaVetor(int Vet[TF], int TLS)
 			Soma += Vet[i];
 }
 
+
+//EXERCICIO [5]
+int Contido(int Vetor[TF], int &TL, int Valor)
+{
+	int i = 0;
+	while (i < TL && Valor != Vetor[i])
+		i++;
+		
+	if (i < TL)
+		return 1;
+	else
+		return 0;
+}
+
+void Subtracao(int VetA[TF], int TA, int VetB, int TB, int VetC[TF], int TC)
+{
+    int i;
+    for (i = 0; i < TA; i++)
+        if (!Contido(VetB, TB, VetA[i])) //não achou vetA[i] dentro de B
+            if (!Contido(VetC, TC, VetA[i])) // == 0 faz um valor falso retornar verdadeiro, da mesma forma que o sinal de '!'
+                VetC[TC++] = VetA[i];
+
+    printf("Subtracao Concluida!\n");
+    getch();
+}
+
+void Interseccao(int VetA[TF], int TA, int VetB, int TB, int VetC[TF], int TC)
+{
+    int i;
+    for (i = 0; i < TA; i++)
+        if (Contido(VetB, TB, VetA[i])) //não achou vetA[i] dentro de B
+            if (!Contido(VetC, TC, VetA[i])) // == 0 faz um valor falso retornar verdadeiro, da mesma forma que o sinal de '!'
+                VetC[TC++] = VetA[i];
+
+    printf("Interseccao Concluida!\n");
+    getch();
+}
+
+void Uniao(int VetA[TF], int TA, int VetB, int TB, int VetC[TF], int TC)
+{
+    int i;
+    for (i = 0; i < TA; i++)
+        if(!Contido(VetC, TC, VetA[i]))
+
+
+    printf("Uniao Concluida!\n");
+    getch();
+}
+
 int main(void)
 {
-    int VA[TF], TLA = 0, Elemento, QtVezes, VetorSoma[TF], TLS = 0, Soma, i;
+	//EXERCICIO [1]
+    int VA[TF], TLA = 0, Elemento, QtVezes, VetorSoma[TF], TLS = 0, Soma, i, VA5[TF], TLA5 = 0, VB5[TF], TLB5 = 0, VC5[TF * 2], TLC5 = 0;
     LeVetor(VA, TLA);
     ExibeVetor(VA, TLA);
     Frequencia(VA, TLA, Elemento, QtVezes); // Na ordem de void Frequencia (V, TL, MA, QV)
@@ -97,6 +147,7 @@ int main(void)
         printf("\nQtde de Vezes: %d\n", QtVezes);
     }
     
+    //EXERCICIO [2]
     LeVetor(VetorSoma, TLS);
     ExibeVetor(VetorSoma, TLS);
     SomaVetor(VetorSoma, TLS); // Na ordem de void Frequencia (V, TL, MA, QV)
@@ -111,17 +162,23 @@ int main(void)
     else
         printf("\nNao ha elementos no vetor, portanto nao ha elementos para exibir\n");
     
+    //EXERCICIO [5]
+    system("cls");
+    printf("Inserir Elementos no Vetor A: \n");
+    LeVetor(VA5, TLA5);
+    printf("Inserir Elementos no Vetor A: \n");
+    LeVetor(VB5, TLB5);
+
+    Subtracao(VA5, TLA5, VB5, TLB5, VC5, TLC5);
+    printf("Resultado da Subtracao: \n");
+    ExibeVetor(VC5, TLC5);
+
+    Interseccao(VA5, TLA5, VB5, TLB5, VC5, TLC5);
+    printf("Resultado da Interseccao: \n");
+    ExibeVetor(VC5, TLC5);
+
+    Uniao(VA5, TLA5, VB5, TLB5, VC5, TLC5);
+    printf("Resultado da Uniao: \n");
+    ExibeVetor(VC5, TLC5);
     return 0;
 }
-
-/*int Contido(int Vetor[TF], int &TL, int Valor)
-{
-	int i = 0;
-	while (i < TL && Valor != Vetor[i])
-		i++;
-		
-	if (i < TL)
-		return 1;
-	else
-		return 0;
-} */
