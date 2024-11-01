@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <conio2.h>
+#include <conio.h>
 #include <windows.h>
 
-// Frequência das notas
+// Frequencia das notas
 #define DO 261
 #define RE 293
 #define MI 329
