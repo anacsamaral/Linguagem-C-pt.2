@@ -138,24 +138,29 @@ void BuscaNome(TpAgenda Ag[TF], int TL)
 	printf("Nome: "); fflush(stdin);
 	gets(PrimeiroNome);
 	
-	while (i < TL && strcmp(PrimeiroNome,"\0")!=0)
+	while (strcmp(PrimeiroNome, "") != 0) 
 	{
-		while strcmp((Ag[i].Nome[i], " ") != 0) //procurar até ter um espaço
-		{
-			printf("Nome: %s\t E-Mail: %s\n Endereço: %s, %s, %s, %s, %s, %s, %s, %s.\n", Ag[i].Nome, Ag[i].Email, Ag[i].Endereco.Rua, Ag[i].Endereco.Numero, Ag[i].Endereco.Complemento, Ag[i].Endereco.Bairro, Ag[i].Endereco.CEP, Ag[i].Endereco.Cidade, Ag[i].Endereco.Pais);
-			printf("Telefone: %s\nData de Aniversario: %s/%s/%s\n", Ag[i].Fone, Ag[i].Data.Dia, Ag[i].Data.Mes, Ag[i].Data.Ano);
-			printf("Observacoes: %s\n");
+	    for (i = 0; i < TL; i++) 
+		{           
+	        if (i == strlen(PrimeiroNome))
+			{
+	            printf("Nome: %s\t E-Mail: %s\nEndereço: %s, %d, %s, %s, %s, %s, %s, %s.\n", 
+	                Ag[i].Nome, Ag[i].Email, Ag[i].Endereco.Rua, Ag[i].Endereco.Numero, 
+	                Ag[i].Endereco.Complemento, Ag[i].Endereco.Bairro, Ag[i].Endereco.CEP, 
+	                Ag[i].Endereco.Cidade, Ag[i].Endereco.Pais);
+	            printf("Telefone: %d %d\nData de Aniversario: %sd/%d/%d\n", 
+	                Ag[i].Fone.DDD, Ag[i].Fone.Numero, Ag[i].Data.Dia, Ag[i].Data.Mes, Ag[i].Data.Ano);
+	            printf("Observações: %s\n", Ag[i].Obs);
+	        }
+	        
+	        for(i = 0; i < tamanho; i++)
+	        {
+	        	if(Ag[i].Nome[i])
+			}
 		}
-		else
-		{
-			printf("\nPessoa nao cadastrada\n");
-			getch();
-		}
-		
-		printf("Outro Nome: "); fflush(stdin);
-		gets(PrimeiroNome);
-	}
-	getch();
+    }
+    printf("Outro Nome: "); fflush(stdin);
+    gets(PrimeiroNome);
 }
 
 void BuscaMes(TpAgenda Ag[TF], int TLD)
@@ -170,22 +175,21 @@ void BuscaMes(TpAgenda Ag[TF], int TLD)
 	
 	while (mes > 0 && mes < 13)
 	{
-		while (i < TLD && AgData[i].Mes != mes)
-			i++;
 	
-		if(i == TLD)
+		while (i < TLD) 
 		{
-			printf("Dados nao cadastrados.");
-			getch();
+		    if (Ag[i].Data.Mes == mes) 
+			{
+		        printf("Nome: %s\t E-Mail: %s\nEndereço: %s, %d, %s, %s, %s, %s, %s.\n", 
+		               Ag[i].Nome, Ag[i].Email, Ag[i].Endereco.Rua, Ag[i].Endereco.Numero,
+		               Ag[i].Endereco.Complemento, Ag[i].Endereco.Bairro, Ag[i].Endereco.CEP,
+		               Ag[i].Endereco.Cidade, Ag[i].Endereco.Pais);
+		        printf("Telefone: (%d) %d\nData de Nascimento: %d/%d/%d\n",
+		               Ag[i].Fone.DDD, Ag[i].Fone.Numero, Ag[i].Data.Dia, Ag[i].Data.Mes, Ag[i].Data.Ano);
+		        printf("Observações: %s\n", Ag[i].Obs);
+		    }
+	    	i++;
 		}
-		else
-		{
-			printf("Nome: %s\t E-Mail: %s\n Endereço: %s, %s, %s, %s, %s, %s, %s, %s.\n", Ag[i].Nome, Ag[i].Email, Ag[i].Endereco.Rua, 
-			Ag[i].Endereco.Numero, Ag[i].Endereco.Complemento, Ag[i].Endereco.Bairro, Ag[i].Endereco.CEP, Ag[i].Endereco.Cidade, Ag[i].Endereco.Pais);
-			printf("Telefone: %s\nData de Aniversario: %s/%s/%s\n", Ag[i].Fone, Ag[i].Data.Dia, Ag[i].Data.Mes, Ag[i].Data.Ano);
-			printf("Observacoes: %s\n");
-		}
-			
 		printf("\nOutro Mes para Busca: ");
 		scanf("%d", &mes);
 	}
@@ -228,8 +232,8 @@ void Executar(void)
 			case 'B': BuscaNome(Agenda, TLAg);
 					  break;
 					  
-//			case 'C': BuscaMes(Agenda, TLAg);
-//					  break;
+			case 'C': BuscaMes(Agenda, TLAg);
+					  break;
 //					  
 //			case 'D': InserirPessoa(Agenda, TLAg);
 //					  break;

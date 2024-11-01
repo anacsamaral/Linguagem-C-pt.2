@@ -6,17 +6,17 @@ void LeNumero(int &num)
 	scanf("%d", &num);
 }
 
-int Fatorial(int &numero, int &soma)
+int Fatorial(int &numero, int &mult)
 {
-    soma = 0;
+    mult = 1;
 
     while(numero > 0)
     {
-    	soma += numero;
+    	mult = mult * numero;
     	numero--;
 	}
 
-	return soma;
+	return mult;
 }
 
 void Resultado (int valor)
@@ -26,11 +26,11 @@ void Resultado (int valor)
 
 int main(void)
 {
-	int num, soma, i;
+	int num, mult, i;
 	
 	LeNumero(num);
-	Fatorial(num, soma);
-	Resultado(soma);
+	Fatorial(num, mult);
+	Resultado(mult);
 	
 	return 0;
 }
