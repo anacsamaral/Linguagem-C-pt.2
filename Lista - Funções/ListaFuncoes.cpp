@@ -33,9 +33,10 @@ char Menu(void)
 void Executar(void)
 {
     char op;
-    op = Menu();
     do
     {
+        system("cls");
+        op = Menu();
         switch (op)
         {
         case 'A':
