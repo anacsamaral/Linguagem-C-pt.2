@@ -202,7 +202,7 @@ void AlterarAluno(void)
 	printf("## Alterar Aluno ##");
 	
 	if(PtrAluno == NULL)
-		printf("\Erro de Abertura:(\n");
+		printf("\nErro de Abertura:(\n");
 	else
 	{
 		printf("\nAluno a ser alterado [R.A.]: ");
