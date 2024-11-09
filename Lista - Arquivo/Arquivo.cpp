@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include <conio2.h>
+#include <conio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <windows.h>
 
 struct Aluno //int tem 4 bytes, string 44 bytes = 48 bytes
 {
@@ -14,7 +14,7 @@ struct Aluno //int tem 4 bytes, string 44 bytes = 48 bytes
 int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 {
 	Aluno Reg;
-	rewind(PtrAluno); //Posiciona o PtrAluno no INÍCIO DO ARQUIVO;
+	rewind(PtrAluno); //Posiciona o PtrAluno no INï¿½CIO DO ARQUIVO;
 	fread(&Reg, sizeof(Aluno), 1, PtrAluno);
 	while(!feof(PtrAluno) && strcmp(RA, Reg.RA)!=0)
 		fread(&Reg, sizeof(Aluno), 1, PtrAluno);
@@ -45,7 +45,7 @@ void OrdenarAlunos(void)
 			ftell retorna quantos bytes o ponteiro andou para estar onde esta atualmente
 			*/
 			{
-				fseek(PtrAlu,a*sizeof(Aluno), 0);//fseek não funciona sozinho
+				fseek(PtrAlu,a*sizeof(Aluno), 0);//fseek nï¿½o funciona sozinho
 				fread(&RegA,sizeof(Aluno), 1, PtrAlu);
 				
 				fseek(PtrAlu,b*sizeof(Aluno), 0);
@@ -73,10 +73,10 @@ void GravarAluno(void)
 {
 	Aluno Reg;
 	printf("%d", sizeof(Aluno)); //qtd de bytes q tem na struct
-	//Ponteiro só vai existir se a função for chamada;
-	FILE *Ptr = fopen("Alunos.dat", "ab+"); //Sempre será esse nome
+	//Ponteiro sï¿½ vai existir se a funï¿½ï¿½o for chamada;
+	FILE *Ptr = fopen("Alunos.dat", "ab+"); //Sempre serï¿½ esse nome
 	//ab+ para deixar ler, da para usar a busca dentro;
-	//É recomendado abrir com rb ou rb+
+	//ï¿½ recomendado abrir com rb ou rb+
 	printf("\n## Cadastro de Alunos ##\n");
 	printf("\nR.A.: "); fflush(stdin);
 	gets(Reg.RA);
@@ -90,11 +90,11 @@ void GravarAluno(void)
 			scanf("%d", &Reg.AnoNasc);
 			
 			fwrite(&Reg, sizeof(Aluno),  1, Ptr); //da memoria pro arquivo
-			//O arquivo começa nesse endereço;
+			//O arquivo comeï¿½a nesse endereï¿½o;
 			//Da para usar o nome da variavel ou o tipo dela (recomendado);
-			//vai pegar 48 bytes a partir desse endereço;
+			//vai pegar 48 bytes a partir desse endereï¿½o;
 			
-			//vai gravar só 1, ou seja, 1 * 48 a partir de onde começa o registro na memória;	
+			//vai gravar sï¿½ 1, ou seja, 1 * 48 a partir de onde comeï¿½a o registro na memï¿½ria;	
 			printf("\nDados Cadastrados!\n");
 		}
 		else
@@ -116,14 +116,14 @@ void ExibirAluno(void)
 	FILE *PtrAlu = fopen("Alunos.dat", "rb"); //ponteiro esta no inicio;
 	//para abrir com rb, tem que ja existir um arquivo;
 	
-	//VALIDANDO SE O ARQUIVO EXISTE (não tem comando, mas)
-	if(PtrAlu == NULL) //null = endereço nulo/vazio;
-	//se sim, significa que foi corrompido ou não existe.
+	//VALIDANDO SE O ARQUIVO EXISTE (nï¿½o tem comando, mas)
+	if(PtrAlu == NULL) //null = endereï¿½o nulo/vazio;
+	//se sim, significa que foi corrompido ou nï¿½o existe.
 		printf("\nErro de Abertura!\n");
 	else
 	{
 		fread(&R, sizeof(Aluno), 1, PtrAlu);
-		while(!feof(PtrAlu)) //feof = end of file, não é fim de arquivo? vc leu o fim de arquivo?
+		while(!feof(PtrAlu)) //feof = end of file, nï¿½o ï¿½ fim de arquivo? vc leu o fim de arquivo?
 		//esta testando onde executou o fread
 		{
 			//onde esta parado o ponteiro, pega o sizeof e joga para o &R;
@@ -133,11 +133,11 @@ void ExibirAluno(void)
 			
 			fread(&R, sizeof(Aluno), 1, PtrAlu);
 		}
-		//se nao foi aberto, nao pode ser fechado, só da fclose se foi aberto
+		//se nao foi aberto, nao pode ser fechado, sï¿½ da fclose se foi aberto
 		fclose(PtrAlu);
 	}
 	getch();
-	//EOF é usado com arquivo texto;
+	//EOF ï¿½ usado com arquivo texto;
 }
 
 void ConsultarAluno(void)
@@ -146,7 +146,7 @@ void ConsultarAluno(void)
 	FILE *PtrAlu = fopen("Alunos.dat", "rb");
 	//O arquivo precisa existir;
 	Aluno RegAluno; //Funciona como auxiliar
-	clrscr();
+	system("cls");
 	printf("\n## Consultar pelo RA: ##\n");
 	if(PtrAlu == NULL)
 		printf("\nErro de Abertura\n");
@@ -167,10 +167,10 @@ void ConsultarAluno(void)
 			{
 				fseek(PtrAlu, pos, 0);
 				/* === fseek(ponteiro, Qtd de Bytes de Desloc., SEEK_SET);
-				//SEEK_SET é a partir do inicio do arq; 
-				//SEEK_CUR é a partir de onde o ponteiro esta;
-				//SEEK_END é um valor positivo para tras, tipo, 96 bytes para tras;
-				eles são constantes e precisam ser maiusculas
+				//SEEK_SET ï¿½ a partir do inicio do arq; 
+				//SEEK_CUR ï¿½ a partir de onde o ponteiro esta;
+				//SEEK_END ï¿½ um valor positivo para tras, tipo, 96 bytes para tras;
+				eles sï¿½o constantes e precisam ser maiusculas
 				
 				SEEK_SET SENDO 0
 				SEEK_CUR SENDO 1
@@ -198,7 +198,7 @@ void AlterarAluno(void)
 	FILE *PtrAluno = fopen("Alunos.dat", "rb+");//arquivo tem q existir
 	Aluno RegAluno;
 	int pos;
-	clrscr();
+	system("cls");
 	printf("## Alterar Aluno ##");
 	
 	if(PtrAluno == NULL)
@@ -235,7 +235,7 @@ void AlterarAluno(void)
 					fseek(PtrAluno, pos, 0);
 					fwrite(&RegAluno, sizeof(Aluno), 1, PtrAluno);
 					
-					fseek(PtrAluno, pos, 0); //ponteiro vai para a posição que achou na busca
+					fseek(PtrAluno, pos, 0); //ponteiro vai para a posiï¿½ï¿½o que achou na busca
 					fread(&RegAluno, sizeof(Aluno), 1, PtrAluno); //fread e fwrite ponteiro vai para frente
 					printf("\n*** Dados Alterados ***");
 					printf("\nR.A: %s", RegAluno.RA);
@@ -255,7 +255,7 @@ void AlterarAluno(void)
 
 char Menu(void)
 {
-	clrscr();
+	system("cls");
 	printf("### M E N U ###");
 	printf("\n[A] Cadastrar");
 	printf("\n[B] Exibir");
@@ -271,7 +271,7 @@ char Menu(void)
 pega o ftell do ponteiro, divide por sizeof;*/
 int main(void)
 {
-	FILE *PtrAluno;  //Não tem vínculo com ninguém
+	FILE *PtrAlu;  //nao tem vinculo com ninguem
 	char opcao;
 	
 	do
