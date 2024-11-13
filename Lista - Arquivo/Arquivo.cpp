@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+#include <conio2.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -8,8 +8,24 @@
 struct Aluno //int tem 4 bytes, string 44 bytes = 48 bytes
 {
 	char RA[14], Nome[30]; //cada char tem 1 byte
-	int AnoNasc; 
+	int AnoNasc;
+	char flag; 
 };
+
+char Menu(void)
+{
+	system("cls");
+	printf("### M E N U ###");
+	printf("\n[A] Cadastrar");
+	printf("\n[B] Exibir");
+	printf("\n[C] Consultar");
+	printf("\n[D] Alterar por R.A.");
+	printf("\n[E] Ordenar por R.A.");
+	printf("\n[F] Excluir Fisicamente por R.A.");
+	printf("\n[ESC] Finalizar");
+	printf("\nOpcao Desejada: ");
+	return toupper(getche());
+}
 
 int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 {
@@ -89,6 +105,7 @@ void GravarAluno(void)
 			printf("\nAno de Nascimento: ");
 			scanf("%d", &Reg.AnoNasc);
 			
+			Reg.flag = '1';
 			fwrite(&Reg, sizeof(Aluno),  1, Ptr); //da memoria pro arquivo
 			//O arquivo comeï¿½a nesse endereï¿½o;
 			//Da para usar o nome da variavel ou o tipo dela (recomendado);
@@ -253,18 +270,74 @@ void AlterarAluno(void)
 	}
 }
 
-char Menu(void)
+// === EXCLUSÃO ===
+/*	Criar um arquivo novo que receberá as informações do antigo arquivo
+	Deletar o antigo arquivo e renomear o atual -> remove("Alunos.dat")
+	Renomear o arquivo atual -> rename("Temp.dat", "Alunos.dat"))
+	
+	
+	 
+*/
+	
+void ExclusaoFisica(void)
 {
-	system("cls");
-	printf("### M E N U ###");
-	printf("\n[A] Cadastrar");
-	printf("\n[B] Exibir");
-	printf("\n[C] Consultar");
-	printf("\n[D] Alterar por R.A.");
-	printf("\n[E] Ordenar por R.A.");
-	printf("\n[ESC] Finalizar");
-	printf("\nOpcao Desejada: ");
-	return toupper(getche());
+	Aluno RegAlu;
+	char AuxRA[14];
+	int pos;
+	
+	FILE *PtrAlu = fopen("Alunos.dat", "rb");
+	clrscr();
+	printf("\n### Exclusao Fisica de um Aluno ###\n");
+	if(PtrAlu ==  NULL)
+		printf("\nErro de Abertura\n");
+	else
+	{
+		printf("\nR.A. a Excluir: ");
+		fflush(stdin);
+		gets(RegAlu.RA);
+		pos = BuscaAlunoRA(PtrAlu, AuxRA);
+		
+		if(pos == -1)
+		{
+			printf("\nAluno nao Cadastrado!\n");
+			fclose(PtrAlu);
+		}
+			
+		else
+		{
+			fseek(PtrAlu, pos,0);
+			fread(&RegAlu, sizeof(Aluno),1,PtrAlu);
+			
+			printf("\nDados do Aluno:\n");
+			printf("R.A.: %s\n", RegAlu.RA);
+			printf("Nome: %s\n", RegAlu.Nome);
+			printf("Ano Nasc.: %d\n", RegAlu.AnoNasc);
+			
+			printf("\nConfirma Exclusao? (S/N): ");
+			if(toupper(getche()) == 'S')
+			{
+				rewind(PtrAlu); //fseek(PtrAlu, 0, 0);
+				FILE *PtrTemp = fopen("Temp.dat", "wb"); //wb abre o arq zerado
+				fread(&RegAlu, sizeof(Aluno),1,PtrAlu);
+				
+				while(!feof(PtrAlu)) //enquanto arq nao acabou
+				{
+					if(strcmp(AuxRA,RegAlu.RA)!=0)
+						//Se diferente, grava
+						fwrite(&RegAlu, sizeof(Aluno), 1, PtrTemp);
+					
+					fread(&RegAlu, sizeof(Aluno), 1, PtrAlu);
+				}
+				fclose(PtrAlu);
+				fclose(PtrTemp);
+				remove("Alunos.dat");
+				rename("Temp.dat", "Alunos.dat");
+				printf("\nAluno Excluido Fisicamente!\n");
+			}
+			else
+				fclose(PtrAlu);
+		}
+	}
 }
 
 /*quantos registros a gente tem: ponteiro no final, 
@@ -297,6 +370,9 @@ int main(void)
 				
 			case 'E':
 					OrdenarAlunos();
+					break;
+			case 'F':
+					ExclusaoFisica();
 					break;
 		}
 		
