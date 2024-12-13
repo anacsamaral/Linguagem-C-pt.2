@@ -38,7 +38,7 @@ int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 	
 	if(strcmp(RA, Reg.RA)==0)
 		return ftell(PtrAluno)-sizeof(Aluno); 
-		//tell diz onde esta o deslocamentoponteiro;
+		//tell diz onde esta o deslocamento do ponteiro;
 		//onde esta o ponteiro, menos uma estrutura;
 	else
 		return -1;

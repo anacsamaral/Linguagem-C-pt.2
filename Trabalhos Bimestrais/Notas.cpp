@@ -14,7 +14,7 @@ struct TpAlunos
 	char RA[13], Nome[40];
 };
 
-struct TpDisc
+struct TpDisca
 {
 	int CodDisc;
 	char Discip[40];
@@ -944,17 +944,13 @@ void PainelPrincipal2(void)
 {
     LimpaMenu();
     gotoxy(5, 7);
-    printf("== MENU RELATORIO ==");
+    printf("== B I B L I O T E C A ==");
     gotoxy(5, 10);
-    printf("[A] Alunos reprovados");
-	gotoxy(5, 11);
-    printf("em 2 disciplinas");
+    printf("[A] Cadastrar");
     gotoxy(5, 12);
-    printf("[B] Alunos com ");
-    gotoxy(5, 13);
-    printf("determinada letra");
+    printf("[B] Excluir ");
 	gotoxy(5, 14);
-    printf("[C] Palavra chave na ");
+    printf("[C] Alterar");
     gotoxy(5, 15);
     printf("disciplina");
     gotoxy(5, 16);
@@ -1245,35 +1241,35 @@ void GerarRelatorio (TpAlunos TabAl[TF], TpDisc TabDi[TF], TpNotas TabNo[TF], in
 
 
 // Execução do menu
-void ExecutarMenu(void)
-{
-	TpAlunos TabAl[TF];
-	TpDisc TabDi[TF];
-	TpNotas TabNo[TF];
-	
-	int Tlag = 0, Tlag2 = 0, Tlag3 = 0, cont = 0; 
-	char opcao;
-	do
+	void ExecutarMenu(void)
 	{
-		PainelPrincipal2();
-		opcao = Menu();
-		switch (opcao)
+		TpAlunos TabAl[TF];
+		TpDisc TabDi[TF];
+		TpNotas TabNo[TF];
+		
+		int Tlag = 0, Tlag2 = 0, Tlag3 = 0, cont = 0; 
+		char opcao;
+		do
 		{
-			case 'A': CadMan(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
-			case 'B': Exibe(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
-			case 'C': Consultar(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
-			case 'D': Excluir(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
-			case 'E': CadAuto(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3, cont); break;
-			case 'F': Alterar(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
-			case 'G': GerarRelatorio(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
-			case 'H': OrdenaAluno(TabAl, Tlag); break;
-			case 27: break;
-			default:gotoxy(5,21);
-					printf("Invalido!");
-					break;
-		}
-	} while (opcao != 27);
-}
+			PainelPrincipal2();
+			opcao = Menu();
+			switch (opcao)
+			{
+				case 'A': CadMan(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
+				case 'B': Exibe(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
+				case 'C': Consultar(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
+				case 'D': Excluir(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
+				case 'E': CadAuto(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3, cont); break;
+				case 'F': Alterar(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
+				case 'G': GerarRelatorio(TabAl, TabDi, TabNo, Tlag, Tlag2, Tlag3); break;
+				case 'H': OrdenaAluno(TabAl, Tlag); break;
+				case 27: break;
+				default:gotoxy(5,21);
+						printf("Invalido!");
+						break;
+			}
+		} while (opcao != 27);
+	}
 
 // Função principal
 int main()

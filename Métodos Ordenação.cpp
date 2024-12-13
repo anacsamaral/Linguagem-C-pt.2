@@ -1,8 +1,8 @@
 #include <stdio.h>
-// M E T O D O S   D E   O R D E N A Ç Ã O
+// M E T O D O S   D E   O R D E N A ï¿½ ï¿½ O
 #define TF 10
-//INSERÇÃO DIRETA
-//por permutação = troca;
+//INSERÃ‡ÃƒO DIRETA
+//por permutaï¿½ï¿½o = troca;
 //pega o ultimo elemento inserido e desloca no vetor
 void InsercaoDireta(int V[TF], int TL)
 {
@@ -30,7 +30,7 @@ void LeVetor(int V[TF], int &TL)
 		V[TL++] = aux;
 		InsercaoDireta(V, TL);
 		//Pega o ultimo elemento que inseriu e vai colocar em ordem; comparando com o vizinho, se nao tiver mais ninguem, acaba;
-		//pega o proximo, na posicao TL - 1, olha o vizinho, compara se é menor, um vai pro lugar do outro, e assim sucessivamente;
+		//pega o proximo, na posicao TL - 1, olha o vizinho, compara se ï¿½ menor, um vai pro lugar do outro, e assim sucessivamente;
 		
 		
 		printf("\nVetor[%d]:", TL);
@@ -41,12 +41,12 @@ void LeVetor(int V[TF], int &TL)
 }
 
 
-//ORDENAÇÃO POR BOLHA
-// - método de ordenação da categoria por troca (mais lento)
-// - olha e troca, faz trocas desnecessárias para depois chegar na definitiva
+//ORDENAÃ‡ÃƒO POR BOLHA
+// - mï¿½todo de ordenaï¿½ï¿½o da categoria por troca (mais lento)
+// - olha e troca, faz trocas desnecessï¿½rias para depois chegar na definitiva
 // para um pequeno volume de dados
-// se tem 7 elementos, será 7² de passos de ordenação
-//ele sempre vai ordenar colocando o maior valor na ultima posição, portanto, na proxima busca, será até o antepenúltimo elemento
+// se tem 7 elementos, serï¿½ 7ï¿½ de passos de ordenaï¿½ï¿½o
+//ele sempre vai ordenar colocando o maior valor na ultima posiï¿½ï¿½o, portanto, na proxima busca, serï¿½ atï¿½ o antepenï¿½ltimo elemento
 //DETALHE = se ja estiver ordenado em um determinado momento, tem que usar uma flag
 
 void OrdenaBolha(int V[TF], int TL)
@@ -55,11 +55,11 @@ void OrdenaBolha(int V[TF], int TL)
 	
 	while(TL > 1 && flag == 1) //tem pelo menos 2 elementos para comparar
 	{
-		flag = 0; //Vê se o vetor ja ta ordenado
+		flag = 0; //Vï¿½ se o vetor ja ta ordenado
 		for(a = 0, b = a + 1; a < TL - 1; a++)
 		if(V[a] > V[b])
 		{
-			aux = V[a]; //SEMPRE COMEÇA COM AUX
+			aux = V[a]; //SEMPRE COMEï¿½A COM AUX
 			V[a] = V[b];
 			V[b] = aux;
 			flag = 1;
@@ -87,10 +87,10 @@ int main(void)
 	return 0;
 }
 
-//SELEÇÃO DIRETA
+//SELEÃ‡ÃƒO DIRETA
 // - precisa do vetor ordenado
-// - seleciona quem é pra ser trocado e troca o elemento
-//qual o maior elemento e em que posição ele está
+// - seleciona quem ï¿½ pra ser trocado e troca o elemento
+//qual o maior elemento e em que posiï¿½ï¿½o ele estï¿½
 
 void OrdenaSelDir(int V[TF], int TL)
 {

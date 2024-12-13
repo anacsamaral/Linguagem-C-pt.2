@@ -37,9 +37,9 @@ int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 	//só para quando os dois de OR forem verdadeiros
 	//fununciona
 	int achou = 0;
-	while(!feof(PtrAluo) && !achou)
+	while(!feof(PtrAluno) && !achou)
 	{
-		if(strcmp(ChaveRA, Reg.RA) == 0 && R.Status)
+		if(strcmp(RA, Reg.RA) == 0 && R.Status)
 			achou = 1;
 		else
 			fread(&R, sizeof(Aluno), 1, PtrAluno);
@@ -49,7 +49,7 @@ int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 	
 	//if(strcmp(RA, Reg.RA)==0 && R.Status)
 	if(achou)
-		return ftell(PtrAluno)-sizeof(Aluno); 
+		return ftell(PtrAluno) - sizeof(Aluno); 
 		//tell diz onde esta o deslocamento ponteiro;
 		//onde esta o ponteiro, menos uma estrutura;
 	else
@@ -66,9 +66,9 @@ void OrdenarAlunos(void)
 	else
 	{
 		fseek(PtrAlu, 0, 2);
-		QtdeReg = ftell(PtrAlu)/sizeof(Aluno);
-		for(a=0; a<QtdeReg-1; a++) //a++ --> a += sizeof(TpAluno); b < QtdeReg - sizeof
-			for(b = a+1; b<QtdeReg; b++) 
+		QtdeReg = ftell(PtrAlu) / sizeof(Aluno);
+		for(a = 0; a < QtdeReg - 1; a++) //a++ --> a += sizeof(TpAluno); b < QtdeReg - sizeof
+			for(b = a + 1; b < QtdeReg; b++) 
 			/*b<feof(PtrAlu) = numero menor que verdadeiro ou falso????? nao da p usar assim
 			O TL representa a quantidade de registros
 			ftell retorna quantos bytes o ponteiro andou para estar onde esta atualmente
@@ -102,10 +102,10 @@ void GravarAluno(void)
 {
 	Aluno Reg;
 	printf("%d", sizeof(Aluno)); //qtd de bytes q tem na struct
-	//Ponteiro sï¿½ vai existir se a funï¿½ï¿½o for chamada;
-	FILE *Ptr = fopen("AlunosLOG.dat", "ab+"); //Sempre serï¿½ esse nome
+	//Ponteiro so vai existir se a funcao for chamada;
+	FILE *Ptr = fopen("AlunosLOG.dat", "ab+"); //Sempre sera esse nome
 	//ab+ para deixar ler, da para usar a busca dentro;
-	//ï¿½ recomendado abrir com rb ou rb+
+	//eh recomendado abrir com rb ou rb+
 	printf("\n## Cadastro de Alunos ##\n");
 	printf("\nR.A.: "); fflush(stdin);
 	gets(Reg.RA);
