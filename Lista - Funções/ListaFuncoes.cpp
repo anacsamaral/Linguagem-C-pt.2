@@ -59,11 +59,11 @@ int Fatorial(int numero) {
     return mult;
 }
 
-void LeHoras(int *a, int *b, int *c, int *d, int *e, int *f) {
+void LeHoras(int &a, int &b, int &c, int &d, int &e, int &f) {
     printf("Digite a hora inicial (hh mm ss):\n");
-    scanf("%d %d %d", a, b, c);
+    scanf("%d %d %d", &a, &b, &c);
     printf("Digite a hora final (hh mm ss):\n");
-    scanf("%d %d %d", d, e, f);
+    scanf("%d %d %d", &d, &e, &f);
 }
 
 int ConverteSegundos(int horaI, int minI, int segI, int horaF, int minF, int segF) {
@@ -88,25 +88,25 @@ void Perfeito(int Num) {
     }
 }
 
-void Parametros(int *ColunaI, int *LinhaI, int *ColunaF, int *LinhaF) {
+void Parametros(int &ColunaI, int &LinhaI, int &ColunaF, int &LinhaF) {
     printf("Digite a coluna inicial: ");
-    scanf("%d", ColunaI);
+    scanf("%d", &ColunaI);
 
     printf("Digite a linha inicial: ");
-    scanf("%d", LinhaI);
+    scanf("%d", &LinhaI);
 
     printf("Digite a coluna final: ");
-    scanf("%d", ColunaF);
+    scanf("%d", &ColunaF);
 
     printf("Digite a linha final: ");
-    scanf("%d", LinhaF);
+    scanf("%d", &LinhaF);
 }
 
-int Dimensao(int ColunaI, int LinhaI, int ColunaF, int LinhaF, int *Largura, int *Altura) {
-    *Largura = ColunaF - ColunaI + 1;
-    *Altura = LinhaF - LinhaI + 1;
+int Dimensao(int ColunaI, int LinhaI, int ColunaF, int LinhaF, int &Largura, int &Altura) {
+    Largura = ColunaF - ColunaI + 1;
+    Altura = LinhaF - LinhaI + 1;
 
-    if (*Largura < 2 || *Altura < 2) {
+    if (Largura < 2 || Altura < 2) {
         printf("Dimensões inválidas para uma moldura.\n");
         return 1;
     }
@@ -191,11 +191,6 @@ void Executar(void) {
     do {
         op = Menu();
 
-        if (op == 27) {
-            printf("\nPrograma encerrado pelo usuário.\n");
-            break; // Sai do loop ao pressionar ESC
-        }
-
         switch (op) {
             case 'A':
                 printf("\n### Conversao de Decimal para Binario ###\n");
@@ -210,7 +205,7 @@ void Executar(void) {
                 break;
 
             case 'C':
-                LeHoras(&hi, &mi, &si, &hf, &mf, &sf);
+                LeHoras(hi, mi, si, hf, mf, sf);
                 diferenca = ConverteSegundos(hi, mi, si, hf, mf, sf);
                 ExibeDiferenca(diferenca);
                 getch();
@@ -235,8 +230,8 @@ void Executar(void) {
                 break;
 
             case 'G':
-                Parametros(&ColunaI, &LinhaI, &ColunaF, &LinhaF);
-                if (Dimensao(ColunaI, LinhaI, ColunaF, LinhaF, &Largura, &Altura) == 0) {
+                Parametros(ColunaI, LinhaI, ColunaF, LinhaF);
+                if (Dimensao(ColunaI, LinhaI, ColunaF, LinhaF, Largura, Altura) == 0) {
                     Moldura(ColunaI, LinhaI, ColunaF, LinhaF, Largura, Altura);
                 }
                 getch();
