@@ -39,10 +39,10 @@ int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 	int achou = 0;
 	while(!feof(PtrAluno) && !achou)
 	{
-		if(strcmp(RA, Reg.RA) == 0 && R.Status)
+		if(strcmp(RA, Reg.RA) == 0 && Reg.Status == 1)
 			achou = 1;
 		else
-			fread(&R, sizeof(Aluno), 1, PtrAluno);
+			fread(&Reg, sizeof(Aluno), 1, PtrAluno);
 	}
 	fread(&Reg, sizeof(Aluno), 1, PtrAluno);
 		
@@ -119,7 +119,7 @@ void GravarAluno(void)
 			scanf("%d", &Reg.AnoNasc);
 			
 			
-			Reg.flag = 1;
+			Reg.Status = 1;
 			fwrite(&Reg, sizeof(Aluno),  1, Ptr); //da memoria pro arquivo
 			//O arquivo come�a nesse endere�o;
 			//Da para usar o nome da variavel ou o tipo dela (recomendado);
@@ -295,7 +295,7 @@ void AlterarAluno(void)
 	 
 */
 
-void ExclusaFisicaTodos(void)
+void ExclusaoFisicaTodos(void)
 {
 	Aluno RegAlu;
 	char AuxRA[14];
@@ -419,7 +419,7 @@ void ExclusaoFisica(void)
 
 void ExclusaoLogica(void)
 {
-	PtrAluno = fopen("AlunosLOG.dat", "rb+");//arquivo tem q existir
+	FILE *PtrAluno = fopen("AlunosLOG.dat", "rb+");//arquivo tem q existir
 	Aluno RegAluno;
 	int pos;
 	system("cls");
@@ -466,11 +466,11 @@ void ExclusaoLogica(void)
 					printf("\nNome: %s", RegAluno.Nome);
 					printf("\nAno Nasc: %d\n", RegAluno.AnoNasc);
 					printf("\nConfirma Exclusao (S/N)?");
-					if (toupper(getche) == 'S')
+					if (toupper(getche()) == 'S')
 					{
-						RAluno.Status = 0;
-						fseek(PtrAlu,pos,0);
-						fwrite(&RAluno, sizeof(Aluno), 1, PtrAlu);
+						RegAluno.Status = 0;
+						fseek(PtrAluno,pos,0);
+						fwrite(&RegAluno, sizeof(Aluno), 1, PtrAluno);
 						printf("\nRegistro excluido com sucesso!\n");
 					}
 					getch();
@@ -520,6 +520,7 @@ int main(void)
 		}
 		
 	}while(opcao != 27);
+	
 	ExclusaoFisicaTodos();
 	return 0;
 }

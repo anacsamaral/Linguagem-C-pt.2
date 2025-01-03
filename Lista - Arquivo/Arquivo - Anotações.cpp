@@ -12,7 +12,7 @@
 	- quando precisa ler ou gravar coisas no arquivo, são funções diferentes
 	para arq texto e binário;
 	
-	- são diferentes as formas de manipular o arquivo conforme o arquivo
+	- são diferentes as formas de manipular o arquivo
 	- para criar, apagar, renomear, onde está, são os mesmos comandos para os 2 tipos
 	
 	- precisamos criar uma seção para que consiga usar esse arquivo
@@ -28,7 +28,7 @@
 		As vezes é necessário forçar o descarregamento
 		- Ponteiro - Nome Físico
 		- Toda vez que usar o aquivo, vai abrir uma seção;
-		- Se não fechar a sessão, pode ficar dados no buffer e se perderem;
+		- Se não fechar a sessão, podem ficar dados no buffer e eles se perderem;
 		- O que enche o buffer vai pro arquivo, o que não enche não vai
 		- O arquivo pode acabar sendo corrompido e não terá como usá-lo mais.
 		- Onde você abre, você fecha;
@@ -57,25 +57,16 @@
 	se abrir um arquivo com wb, não consegue ver se o dado é repetido ou não
 	porque com WB o ponteiro sempre está no fim do arquivo;
 	- quando abrimos com RB, o ponteiro do arquivo é colocado no início
-	podendo andar no arquivo, mas não consegue gravar;
+	podendo andar no arquivo, mas não consegue gravar (buscas);
 	- só dá para abortar o arquivo se abrir o arquivo e não tiver nada
 	- AB grava no final; se o arquivo nao existe, ele cria, se ja existe
 	mantem os dados e posiciona o ponteiro no final
 	- os plus fazem a mesma coisa, mas nao deixa gravar, deixa gravar em qualquer lugar
 	e atualizar o que ja tem (RB+), se colocar o ponteiro no fim, ele grava. mas 
 	na teoria nao
-	- se arq existe, zera, senao, ele cria(WB+)
+	- se arq existe, zera, senao, ele cria (WB+)
 	- AB+ para buscas;
 	
 	fclose() - como um "salvar"
 	
-	
-	
  */
- 
- #include <stdio.h>
- 
- int main()
- {
- 	
- }

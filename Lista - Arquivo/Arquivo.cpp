@@ -31,7 +31,7 @@ char Menu(void)
 int BuscaAlunoRA(FILE *PtrAluno, char RA[14]) //arquivo passa aberto
 {
 	Aluno Reg;
-	rewind(PtrAluno); //Posiciona o PtrAluno no IN�CIO DO ARQUIVO;
+	rewind(PtrAluno); //Posiciona o PtrAluno no INICIO DO ARQUIVO;
 	fread(&Reg, sizeof(Aluno), 1, PtrAluno);
 	while(!feof(PtrAluno) && strcmp(RA, Reg.RA)!=0)
 		fread(&Reg, sizeof(Aluno), 1, PtrAluno);
@@ -55,8 +55,8 @@ void OrdenarAlunos(void)
 	{
 		fseek(PtrAlu, 0, 2);
 		QtdeReg = ftell(PtrAlu)/sizeof(Aluno);
-		for(a=0; a<QtdeReg-1; a++) //a++ --> a += sizeof(TpAluno); b < QtdeReg - sizeof
-			for(b = a+1; b<QtdeReg; b++) 
+		for(a = 0; a < QtdeReg - 1; a++) //a++ --> a += sizeof(TpAluno); b < QtdeReg - sizeof
+			for(b = a + 1; b < QtdeReg; b++)
 			/*b<feof(PtrAlu) = numero menor que verdadeiro ou falso????? nao da p usar assim
 			O TL representa a quantidade de registros
 			ftell retorna quantos bytes o ponteiro andou para estar onde esta atualmente
@@ -108,11 +108,11 @@ void GravarAluno(void)
 			
 			Reg.flag = '1';
 			fwrite(&Reg, sizeof(Aluno),  1, Ptr); //da memoria pro arquivo
-			//O arquivo come�a nesse endere�o;
+			//O arquivo comeca nesse endereco;
 			//Da para usar o nome da variavel ou o tipo dela (recomendado);
-			//vai pegar 48 bytes a partir desse endere�o;
+			//vai pegar 48 bytes a partir desse endereco;
 			
-			//vai gravar s� 1, ou seja, 1 * 48 a partir de onde come�a o registro na mem�ria;	
+			//vai gravar so 1, ou seja, 1 * 48 a partir de onde comeca o registro na memoria;	
 			printf("\nDados Cadastrados!\n");
 		}
 		else
