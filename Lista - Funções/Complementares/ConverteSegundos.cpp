@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <conio.h>
 
 void LeValores(int &h, int &m, int &s)
