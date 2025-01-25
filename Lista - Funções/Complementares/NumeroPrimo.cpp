@@ -1,31 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 
-float LeNumero(void)
+int LeNumero(void)
 {
     int num;
-    printf("Digite o numero: ");
+    printf("Digite o número: ");
     scanf("%d", &num);
     return num;
 }
 
-int Calculo (int num)
-{
+int Calculo(int num) {
     int cont = 0, i;
 
-    for(i = num; i > 0; i--)
-        if(num % i == 0)
+    for (i = 1; i <= num; i++)
+        if (num % i == 0)
             cont++;
 
-    if(cont == 2)
-        printf("\n1\n");
+    if (cont == 2)
+        return 1;
     else
-        printf("\n0\n");
+        return 0;
 }
 
-int main(void)
+int main(void) 
 {
-    Calculo(LeNumero());
+    int numero, ehPrimo;
+
+    numero = LeNumero();
+    ehPrimo = Calculo(numero);
+
+    printf("\nResultado: %d\n", ehPrimo);
+
     return 0;
 }
