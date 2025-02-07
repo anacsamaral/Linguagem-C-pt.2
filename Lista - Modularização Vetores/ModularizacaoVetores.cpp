@@ -1,4 +1,4 @@
-// EXERCÍCIOS 1, 2, 3 E 4 DA LISTA "MODULARIZAÇÃO DE VETORES"
+// EXERCICIOS DA LISTA "MODULARIZACAO DE VETORES"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,7 +7,7 @@
 
 #define TF 100
 
-// EXERCÍCIO [1]: VETOR FREQUENCIA
+// EXERCï¿½CIO [1]: VETOR FREQUENCIA
 void LeVetor(int V[TF], int &TL)
 {
 	int aux;
@@ -94,7 +94,7 @@ void Frequencia(int	V[TF], int TL, int &MaisAparece, int &QtdeVezes)
 	
 }
 
-//EXERCÍCIO [2]: VETOR SOMA
+//EXERCï¿½CIO [2]: VETOR SOMA
 int Soma(int V[TF], int TL)
 {
 	int i, Soma = 0;
@@ -182,8 +182,8 @@ void Subtracao(int VSub[TF * 2], int &TLSub, int VA[TF], int TLA, int VB[TF], in
 	TLSub = 0;
 	
 	for(i = 0; i < TLA; i++)
-		if(!Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA não está contido em VB
-			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA não está contido em VSub
+		if(!Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA nï¿½o estï¿½ contido em VB
+			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA nï¿½o estï¿½ contido em VSub
 				VSub[TLSub++] = VA[i];
 }
 
@@ -196,8 +196,8 @@ void Interseccao(int VSub[TF * 2], int &TLSub, int VA[TF], int TLA, int VB[TF], 
 	TLSub = 0;
 	
 	for(i = 0; i < TLA; i++)
-		if(Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA não está contido em VB
-			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA não está contido em VSub
+		if(Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA nï¿½o estï¿½ contido em VB
+			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA nï¿½o estï¿½ contido em VSub
 				VSub[TLSub++] = VA[i];
 }
 
@@ -267,7 +267,7 @@ void ParImpar(int V[TF], int TL)
 int main(void)
 {
 	int VF[TF], VS[TF], VC[TF], VA[TF], VB[TF], VSub[TF * 2]; // vetores
-	int TLF = 0, TLS = 0, TLC = 0, TLA = 0, TLB = 0, TLSub = 0; // tamanho lógico
+	int TLF = 0, TLS = 0, TLC = 0, TLA = 0, TLB = 0, TLSub = 0; // tamanho lï¿½gico
 	int MaisAparece, QtdeVezes, SomaVetor, ContidoVetor, Valor; // variaveis
 	
 	//EXERCICIO [1]: VETOR FREQUENCIA
