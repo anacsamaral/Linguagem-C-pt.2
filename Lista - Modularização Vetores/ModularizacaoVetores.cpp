@@ -182,22 +182,22 @@ void Subtracao(int VSub[TF * 2], int &TLSub, int VA[TF], int TLA, int VB[TF], in
 	TLSub = 0;
 	
 	for(i = 0; i < TLA; i++)
-		if(!Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA n�o est� contido em VB
-			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA n�o est� contido em VSub
+		if(!Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA nao esta contido em VB
+			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA nao esta contido em VSub
 				VSub[TLSub++] = VA[i];
 }
 
 void Interseccao(int VSub[TF * 2], int &TLSub, int VA[TF], int TLA, int VB[TF], int TLB)
 {
-	printf("\n### Subtracao dos Vetores A e B ###\n");
+	printf("\n### Interseccao dos Vetores A e B ###\n");
 	getch();
 	int i;
 	
 	TLSub = 0;
 	
 	for(i = 0; i < TLA; i++)
-		if(Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA n�o est� contido em VB
-			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA n�o est� contido em VSub
+		if(Contido(VB, TLB, VA[i])) // Se verdade que o Elemento de VA esta contido em VB
+			if(!ContidoSub(VSub, TLSub, VA[i])) // Se verdade que o Elemento de VA nao esta contido em VSub
 				VSub[TLSub++] = VA[i];
 }
 
