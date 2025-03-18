@@ -267,7 +267,7 @@ void ParImpar(int V[TF], int TL)
 int main(void)
 {
 	int VF[TF], VS[TF], VC[TF], VA[TF], VB[TF], VSub[TF * 2]; // vetores
-	int TLF = 0, TLS = 0, TLC = 0, TLA = 0, TLB = 0, TLSub = 0; // tamanho l�gico
+	int TLF = 0, TLS = 0, TLC = 0, TLA = 0, TLB = 0, TLSub = 0; // tamanho logico
 	int MaisAparece, QtdeVezes, SomaVetor, ContidoVetor, Valor; // variaveis
 	
 	//EXERCICIO [1]: VETOR FREQUENCIA
