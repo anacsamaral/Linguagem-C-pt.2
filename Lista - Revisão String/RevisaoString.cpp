@@ -30,59 +30,73 @@ char Menu()
     return op;
 }
 
+int ContarVogais(char string)
+{
+    
+}
+
 int main(void)
 {
-    char op;
+    char op, string[1][TF];
     op = Menu();
 
-    switch (op)
+    do
     {
-        case '1':
-            printf("\n========[Exercicio 1]========\n");
-            break;
+        switch (op)
+        {
+            case '1':
+                printf("\n========[Exercicio 1]========\n");
+                printf("Digite uma string:");
+                fflush(stdin);
+                scanf("%s", &string);
 
-        case '2':
-            printf("\n========[Exercicio 2]========\n");
-            break;
+                break;
 
-        case '3':
-            printf("\n========[Exercicio 3]========\n");
-            break;
+            case '2':
+                printf("\n========[Exercicio 2]========\n");
+                break;
 
-        case '4':
-            printf("\n========[Exercicio 4]========\n");
-            break;
+            case '3':
+                printf("\n========[Exercicio 3]========\n");
+                break;
 
-        case '5':
-            printf("\n========[Exercicio 5]========\n");
-            break;
+            case '4':
+                printf("\n========[Exercicio 4]========\n");
+                break;
 
-        case '6':
-            printf("\n========[Exercicio 6]========\n");
-            break;
+            case '5':
+                printf("\n========[Exercicio 5]========\n");
+                break;
 
-        case '7':
-            printf("\n========[Exercicio 7]========\n");
-            break;
+            case '6':
+                printf("\n========[Exercicio 6]========\n");
+                break;
 
-        case '8':
-            printf("\n========[Exercicio 8]========\n");
-            break;
+            case '7':
+                printf("\n========[Exercicio 7]========\n");
+                break;
 
-        case '9':
-            printf("\n========[Exercicio 9]========\n");
-            break;
+            case '8':
+                printf("\n========[Exercicio 8]========\n");
+                break;
 
-        case '10':
-            printf("\n========[Exercicio 10]========\n");
-            break;
+            case '9':
+                printf("\n========[Exercicio 9]========\n");
+                break;
+
+            case '10':
+                printf("\n========[Exercicio 10]========\n");
+                break;
+                
+            case 'X': case 'x':
+                printf("\n========[Fim do Programa]========\n");
+                break;
             
-        case 'X': case 'x':
-            printf("\n========[Fim do Programa]========\n");
-            break;
-        
-        default:
-            printf("\nOpcao Invalida\n");
-            break;
-    }
+            default:
+                printf("\nOpcao Invalida\n");
+                break;
+        }
+    }while(toupper(op) != 'X');
+
+    return 0;
 }
