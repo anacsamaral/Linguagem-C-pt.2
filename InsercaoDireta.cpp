@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <conio2.h>
+#include <conio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 #define TF 10
 
@@ -42,7 +43,7 @@ void InsercaoDireta(int V[TF], int TL)
 void Exibir(int V[TF], int TL)
 {
 	int i = 0;
-	clrscr();
+	system("cls");
 	
 	printf("\nConteudo do Vetor:\n");
 	if (TL == 0)
@@ -59,6 +60,7 @@ void LeVetor(int V[TF], int &TL)
 	int aux;
 	
 	printf("\n ** Inserir Elemento **\n");
+	printf("\nVetor[%d]: ", TL);
 	scanf("%d", &aux);
 	
 	while(TL < TF && aux != 0)
@@ -66,7 +68,7 @@ void LeVetor(int V[TF], int &TL)
 		V[TL++] = aux;
 		InsercaoDireta(V, TL);
 		//Pega o ultimo elemento que inseriu e vai colocar em ordem; comparando com o vizinho, se nao tiver mais ninguem, acaba;
-		//pega o proximo, na posicao TL - 1, olha o vizinho, compara se é menor, um vai pro lugar do outro, e assim sucessivamente;
+		//pega o proximo, na posicao TL - 1, olha o vizinho, compara se ï¿½ menor, um vai pro lugar do outro, e assim sucessivamente;
 		
 		printf("\nVetor[%d]: ", TL);
 		scanf("%d", &aux);
